@@ -17,7 +17,7 @@ public class RoverTest {
 		// Act
 		rover.runInstructions("MM");
 		// Assert
-		assertEquals("0 2 N", rover.getPositionAsString());
+		assertEquals(2, rover.getY());
 
 	}
 
@@ -29,7 +29,7 @@ public class RoverTest {
 		// Act
 		rover.runInstructions("L");
 		// Assert
-		assertEquals("0 0 W", rover.getPositionAsString());
+		assertEquals('W', rover.getDirection());
 	}
 
 	@Test
@@ -40,15 +40,15 @@ public class RoverTest {
 		// Act
 		rover.runInstructions("R");
 		// Assert
-		assertEquals("0 0 E", rover.getPositionAsString());
+		assertEquals('E', rover.getDirection());
 	}
 
 	@Test
-	public void roverDirecaoInvalidaDeveLancarExcecao() {
+	public void runInvalidInstructionShouldThrowException() {
 
 		// Arrange
 		rover = new Rover(0, 0, 'N');
-		String instructions = "0, 1, 'K'";
+		String instructions = "0, 1, K";
 		// Act
 		assertThrows(IllegalArgumentException.class, () -> rover.runInstructions(instructions));
 	}
