@@ -49,10 +49,9 @@ public class RoverTest {
 	@Test
 	public void runInvalidInstructionShouldThrowException() {
 
-		// Arrange
-		rover = new Rover(0, 0, 'N');
+		// Act		
 		String instructions = "0, 1, K";
-		// Act
+		// Assert
 		assertThrows(IllegalArgumentException.class, () -> rover.runInstructions(instructions));
 	}
 
