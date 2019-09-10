@@ -19,11 +19,13 @@ public class RoverParserTest {
 	
 	/*x y e pro direction*/
 	
-/*	@Test
+	@Test
 	public void parseY() {
-		RoverParser
+		//RoverParser testPosition = new RoverParser();
+		assertThrows(IllegalArgumentException.class, () -> new RoverParser().parsePosition("20 20 N"));	
 		
 	}
-	*/	
+	
+	
 		
 }
