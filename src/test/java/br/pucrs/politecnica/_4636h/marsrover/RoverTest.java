@@ -1,11 +1,10 @@
 package br.pucrs.politecnica._4636h.marsrover;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RoverTest {
 
@@ -13,7 +12,7 @@ public class RoverTest {
 
 	@BeforeEach
 	public void setUp() {
-		rover = new Rover(0, 0, 'N');
+		rover = new Rover(0, 0, Direction.NORTH);
 	}
 
 
@@ -34,7 +33,7 @@ public class RoverTest {
 		// Act
 		rover.runInstructions("L");
 		// Assert
-		assertEquals('W', rover.getDirection());
+		assertEquals(Direction.WEST, rover.getDirection());
 	}
 
 	@Test
@@ -43,7 +42,7 @@ public class RoverTest {
 		// Act
 		rover.runInstructions("R");
 		// Assert
-		assertEquals('E', rover.getDirection());
+		assertEquals(Direction.EAST, rover.getDirection());
 	}
 
 	@Test

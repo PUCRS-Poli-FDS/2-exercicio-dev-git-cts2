@@ -66,7 +66,7 @@ public class RoverDeployer {
 
         direction = scanner.next().charAt(0);
 
-        return new Rover(x, y, direction);
+        return new Rover(x, y, Direction.fromValue(direction));
     }
 
     private IllegalArgumentException invalidPlateauException() {

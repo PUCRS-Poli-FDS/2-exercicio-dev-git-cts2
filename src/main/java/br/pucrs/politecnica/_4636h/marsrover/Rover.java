@@ -2,18 +2,13 @@ package br.pucrs.politecnica._4636h.marsrover;
 
 public class Rover {
 
-	private static final String VALID_DIRECTION_CHARS = "NSWE";
 	private static final String VALID_INSTRUCTION_CHARS = "LRM";
 
 	private int x;
 	private int y;
-	private char direction;
+	private Direction direction;
 
-	public Rover(int x, int y, char direction) {
-		if (!isValidDirection(direction)) {
-			throw new IllegalArgumentException("Invalid direction: " + direction);
-		}
-
+	public Rover(int x, int y, Direction direction) {
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
@@ -27,7 +22,7 @@ public class Rover {
 		return x;
 	}
 
-	public char getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 
@@ -57,11 +52,7 @@ public class Rover {
 	}
 
 	public String getPositionAsString() {
-		return String.format("%d %d %c", x, y, direction);
-	}
-
-	private static boolean isValidDirection(char direction) {
-		return VALID_DIRECTION_CHARS.indexOf(direction) != -1;
+		return String.format("%d %d %c", x, y, direction.getValue());
 	}
 
 	private static boolean isValidInstruction(char instruction) {
@@ -70,52 +61,52 @@ public class Rover {
 
 	private void moveForward() {
 		switch (direction) {
-		case 'N':
-			y++;
-			break;
-		case 'S':
-			y--;
-			break;
-		case 'W':
-			x--;
-			break;
-		case 'E':
-			x++;
-			break;
+			case NORTH:
+				y++;
+				break;
+			case SOUTH:
+				y--;
+				break;
+			case EAST:
+				x++;
+				break;
+			case WEST:
+				x--;
+				break;
 		}
 	}
 
 	private void spinLeft() {
 		switch (direction) {
-		case 'N':
-			direction = 'W';
-			break;
-		case 'S':
-			direction = 'E';
-			break;
-		case 'W':
-			direction = 'S';
-			break;
-		case 'E':
-			direction = 'N';
-			break;
+			case NORTH:
+				direction = Direction.WEST;
+				break;
+			case SOUTH:
+				direction = Direction.EAST;
+				break;
+			case EAST:
+				direction = Direction.NORTH;
+				break;
+			case WEST:
+				direction = Direction.SOUTH;
+				break;
 		}
 	}
 
 	private void spinRight() {
 		switch (direction) {
-		case 'N':
-			direction = 'E';
-			break;
-		case 'S':
-			direction = 'W';
-			break;
-		case 'W':
-			direction = 'N';
-			break;
-		case 'E':
-			direction = 'S';
-			break;
+			case NORTH:
+				direction = Direction.EAST;
+				break;
+			case SOUTH:
+				direction = Direction.WEST;
+				break;
+			case WEST:
+				direction = Direction.NORTH;
+				break;
+			case EAST:
+				direction = Direction.SOUTH;
+				break;
 		}
 	}
 }
