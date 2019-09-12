@@ -13,7 +13,7 @@ public class RoverParserTest {
 		Rover rover = jorge.parsePosition("10 20 N");
 		assertEquals(10, rover.getX());
 		assertEquals(20, rover.getY());
-		assertEquals('N', rover.getDirection());
+		assertEquals(Direction.NORTH, rover.getDirection());
 		
 	}
 	
@@ -22,7 +22,7 @@ public class RoverParserTest {
 	@Test
 	public void parseY() {
 		//RoverParser testPosition = new RoverParser();
-		assertThrows(IllegalArgumentException.class, () -> new RoverParser().parsePosition("20 20 N"));	
+		assertThrows(IllegalArgumentException.class, () -> new RoverParser().parsePosition("20 20"));
 		
 	}
 	

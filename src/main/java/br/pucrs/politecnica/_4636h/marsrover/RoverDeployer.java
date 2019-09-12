@@ -20,8 +20,9 @@ public class RoverDeployer {
     }
 
     public String deploy(String position, String instructions) {
-        Rover rover = new RoverParser().parsePosition(position);
-        rover.runInstructions(instructions);
+        RoverParser parser = new RoverParser();
+        Rover rover = parser.parsePosition(position);
+        rover.runInstructions(parser.parseInstructions(instructions));
         return rover.getPositionAsString();
     }
 
@@ -46,6 +47,4 @@ public class RoverDeployer {
     private IllegalArgumentException invalidPlateauException() {
         return new IllegalArgumentException("Invalid plateau string!");
     }
-
-
 }

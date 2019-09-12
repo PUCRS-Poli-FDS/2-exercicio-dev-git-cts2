@@ -3,8 +3,10 @@ package br.pucrs.politecnica._4636h.marsrover;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RoverTest {
 
@@ -18,10 +20,12 @@ public class RoverTest {
 
 	@Test
 	public void moveForwardTest() {
-
+        List<Instruction> instructions = new LinkedList<>();
+        instructions.add(Instruction.MOVE_FORWARD);
+        instructions.add(Instruction.MOVE_FORWARD);
 		
 		// Act
-		rover.runInstructions("MM");
+		rover.runInstructions(instructions);
 		// Assert
 		assertEquals(2, rover.getY());
 
@@ -29,29 +33,23 @@ public class RoverTest {
 
 	@Test
 	public void spinLeftTest() {
+	    List<Instruction> instructions = new LinkedList<>();
+	    instructions.add(Instruction.SPIN_LEFT);
 
 		// Act
-		rover.runInstructions("L");
+		rover.runInstructions(instructions);
 		// Assert
 		assertEquals(Direction.WEST, rover.getDirection());
 	}
 
 	@Test
 	public void spinRightTest() {
+        List<Instruction> instructions = new LinkedList<>();
+        instructions.add(Instruction.SPIN_RIGHT);
 
-		// Act
-		rover.runInstructions("R");
+        // Act
+        rover.runInstructions(instructions);
 		// Assert
 		assertEquals(Direction.EAST, rover.getDirection());
 	}
-
-	@Test
-	public void runInvalidInstructionShouldThrowException() {
-
-		// Act		
-		String instructions = "0, 1, K";
-		// Assert
-		assertThrows(IllegalArgumentException.class, () -> rover.runInstructions(instructions));
-	}
-
 }

@@ -2,8 +2,6 @@ package br.pucrs.politecnica._4636h.marsrover;
 
 public class Rover {
 
-	private static final String VALID_INSTRUCTION_CHARS = "LRM";
-
 	private int x;
 	private int y;
 	private Direction direction;
@@ -26,37 +24,26 @@ public class Rover {
 		return direction;
 	}
 
-	public void runInstructions(String instructions) {
-		for (int i = 0, n = instructions.length(); i < n; i++) {
-			char instruction = instructions.charAt(i);
-			runInstruction(instruction);
-		}
+	public void runInstructions(Iterable<Instruction> instructions) {
+	    instructions.forEach(this::runInstruction);
 	}
 
-	public void runInstruction(char instruction) {
-		if (!isValidInstruction(instruction)) {
-			throw new IllegalArgumentException("Invalid instruction: " + instruction);
-		}
-
+	public void runInstruction(Instruction instruction) {
 		switch (instruction) {
-		case 'L':
-			spinLeft();
-			break;
-		case 'R':
-			spinRight();
-			break;
-		case 'M':
-			moveForward();
-			break;
+            case SPIN_LEFT:
+                spinLeft();
+                break;
+            case SPIN_RIGHT:
+                spinRight();
+                break;
+            case MOVE_FORWARD:
+                moveForward();
+                break;
 		}
 	}
 
 	public String getPositionAsString() {
 		return String.format("%d %d %c", x, y, direction.getValue());
-	}
-
-	private static boolean isValidInstruction(char instruction) {
-		return VALID_INSTRUCTION_CHARS.indexOf(instruction) != -1;
 	}
 
 	private void moveForward() {
