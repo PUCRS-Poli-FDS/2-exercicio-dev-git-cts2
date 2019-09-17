@@ -7,6 +7,16 @@ import org.junit.jupiter.api.Test;
 
 public class RoverParserTest {
 
+
+	
+	/*x y e pro direction*/
+	
+	@Test
+	public void parseY() {
+		assertThrows(IllegalArgumentException.class, () -> new RoverParser().parsePosition("20 20 N"));	
+		
+	}
+	
 	@Test
 	public void parsePositionTest(){
 		RoverParser jorge = new RoverParser();
@@ -16,16 +26,6 @@ public class RoverParserTest {
 		assertEquals('N', rover.getDirection());
 		
 	}
-	
-	/*x y e pro direction*/
-	
-	@Test
-	public void parseY() {
-		//RoverParser testPosition = new RoverParser();
-		assertThrows(IllegalArgumentException.class, () -> new RoverParser().parsePosition("20 20 N"));	
-		
-	}
-	
 	
 		
 }
